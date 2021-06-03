@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pirmary: #191414;
+  --secondary: #1ed760;
+  --third: #1db954;
+  --fourth: #ffffff;
+}
+
+body,
+html {
+  background: #b3b3b3;
+}
+
+/* HEADER STYLING */
+header div {
+  background: var(--pirmary);
+  width: 100%;
+}
+
+header div h1 {
+  color: var(--secondary);
+}
+
+header div h1 span {
+  color: var(--secondary);
+}
+/* END OF HEADER STYLING */
