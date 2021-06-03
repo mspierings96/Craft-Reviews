@@ -33,7 +33,7 @@ footer {
   background: var(--pirmary);
   bottom: 0;
   width: 100%;
-  position: static;
+  position: bottom;
   text-decoration: none;
 }
 footer a {
