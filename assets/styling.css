@@ -30,3 +30,20 @@ header div h1 span {
   color: var(--secondary);
 }
 /* END OF HEADER STYLING */
+
+/* FOOTER STYLING */
+footer {
+  background: var(--pirmary);
+  bottom: 0;
+  width: 100%;
+  position: static;
+  text-decoration: none;
+}
+footer a {
+  color: var(--secondary);
+}
+
+footer p {
+  color: var(--secondary);
+}
+/* END OF FOOTER STYLING */
