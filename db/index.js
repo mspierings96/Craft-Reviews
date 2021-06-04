@@ -9,10 +9,15 @@ class DB {
 
 // find count of reviews by rating scores
 findTotalsByScore() {
-    return this.connection.promis().query(
+    return this.connection.promise().query(
         'Select COUNT(CASE WHEN r.review = 5 then 1 else NULL END) as "5-Star", COUNT(CASE WHEN r.review = 4 then 1 else NULL END) as "4-Star", COUNT(CASE WHEN r.review = 3 then 1 else NULL END) as "3-Star", COUNT(CASE WHEN r.review = 2 then 1 else NULL END) as "2-Star", COUNT(CASE WHEN r.review = 1 then 1 else NULL END) as "1-Star" From reviews r;'
     );
 }
 
-// find top 10 by highest rating
+// find top 5 by highest rating
+findHighestFive() {
+    return this.connection.promise().query(
+        'select  r.apiID, COUNT(CASE WHEN r.review = 5 then 1 else NULL END) as 5Star from reviews r group by r.apiID order by 5Star desc LIMIT 5;'
+    );
+}
 }
