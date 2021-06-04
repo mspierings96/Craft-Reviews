@@ -17,16 +17,30 @@ html {
 }
 
 /* HEADER STYLING */
-header div {
-  background: var(--pirmary);
-  width: 100%;
+
+button:focus {
+  outline: 0;
 }
 
-header div h1 {
-  color: var(--secondary);
+.navbar .dropdown-menu .form-control {
+  width: 200px;
 }
 
-header div h1 span {
-  color: var(--secondary);
-}
 /* END OF HEADER STYLING */
+
+/* FOOTER STYLING */
+footer {
+  background: var(--pirmary);
+  bottom: 0;
+  width: 100%;
+  position: bottom;
+  text-decoration: none;
+}
+footer a {
+  color: var(--secondary);
+}
+
+footer p {
+  color: var(--secondary);
+}
+/* END OF FOOTER STYLING */
