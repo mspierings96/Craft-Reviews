@@ -25,6 +25,7 @@
     "moustache": "0.0.4",
     "mustache": "^4.2.0",
     "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
     "sequelize": "^6.6.2"
   }
 }
