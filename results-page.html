@@ -6,19 +6,81 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./assets/styling.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <!-- Header -->
-    <header class="navbar">
-      <div class="navbar-item">
-        <h1 class="title m-2 p-3" style=>
-          Review <span></span> Crafts 
-        </h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+      <div class="container">
+        <a class="navbar-brand" href="#">REVIEW CRAFTS</a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-toggle="collapse"
+          data-target="#exCollapsingNavbar"
+        >
+          &#9776;
+        </button>
+        <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+          <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+            <li class="nav-item order-2 order-md-1">
+              <a href="#" class="nav-link" title="settings"
+                ><i class="fa fa-cog fa-fw fa-lg"></i
+              ></a>
+            </li>
+            <li class="dropdown order-1">
+              <button
+                type="button"
+                id="homeButton"
+                class="btn btn-outline-secondary"
+              >
+                Return to Home Page <span class="caret"></span>
+                <a
+                  href="file:///C:/Users/mitch/Documents/Group-project2/Craft-Reviews/home-page.html#"
+                ></a>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </nav>
     <main></main>
+    <!-- Footer Begins -->
+    <footer>
+      <div class="section">
+        <a
+          href="https://github.com/mspierings96/Craft-Reviews"
+          style="text-decoration: none"
+          >GitHub</a
+        >
+        <p>
+          Contributions: Adam Olson, Devon Ross, Kaan Nazlioz, Mitchell
+          Spierings
+        </p>
+      </div>
+    </footer>
+    <!-- Footer Ends -->
 
-    <script src="" async defer></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
