@@ -62,10 +62,10 @@ findTotalsByScore() {
         (Case When r.review = 1 then 5 else null end) as 1Star
         from reviews r) as u
         order by Ranking desc
-        -- limit 5
         ) as a
         where a.ScoreCount is not null
         group by a.apiID
+        limit 5
         ;`
     );
 }
