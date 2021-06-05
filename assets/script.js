@@ -1,6 +1,8 @@
-const searchButton = document.getElementById("search-button");
-const searchInput = document.getElementById("search-input");
-searchButton.addEventListener("click", () => {
-  const inputValue = searchInput.value;
-  alert(inputValue);
-});
+let inputValue;
+
+$("#search-button").click(function () {
+  event.preventDefault();
+  console.log("CLICK WORKS")
+})
+
+module.exports = inputValue;
