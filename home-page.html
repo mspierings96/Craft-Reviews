@@ -7,6 +7,8 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./assets/styling.css" />
+    <link rel="stylesheet" href="./assets/script.js" />
+
     <!-- IMPORTING BOOTSTRAP -->
     <link
       rel="stylesheet"
@@ -14,9 +16,15 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <!-- Header -->
+    <!-- Header Begins -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
       <div class="container">
         <a class="navbar-brand" href="#">REVIEW CRAFTS</a>
@@ -29,12 +37,6 @@
           &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-          <!-- <ul class="nav navbar-nav">
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Service</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">More</a></li>
-          </ul> -->
           <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
             <li class="nav-item order-2 order-md-1">
               <a href="#" class="nav-link" title="settings"
@@ -87,7 +89,81 @@
         </div>
       </div>
     </nav>
-    <main></main>
+    <!-- Header Ends -->
+    <main>
+      <!-- TOP 5 BREWERY LANDING AREA -->
+      <div class="container">
+        <h2 class="mb-3 text-center">Search a Brewery</h2>
+        <form class="d-flex">
+          <input
+            class="form-control mr-2"
+            type="serach"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <!-- <div class="input-group col-lg-8 col-md-10 col-sm-12">
+            <div class="form-outline">
+              <input
+                id="search-input"
+                type="search"
+                id="form1"
+                class="form-control"
+              />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button id="search-button" type="button" class="btn btn-primary">
+              <i class="fas fa-search">Search</i>
+            </button>
+          </div> -->
+        <h2 class="mb-3 text-center">TOP 5 BREWERIES</h2>
+        <div class="table-responsive-md">
+          <table class="top-5 table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Brewery Rank</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>New Glarus Brewing Company</td>
+                <td>New Glarus</td>
+                <td>Wisconsin</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Central Waters Brewing Company</td>
+                <td>Amherst</td>
+                <td>Wisconsin</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Fox River Brewing Company</td>
+                <td>Oshkosh</td>
+                <td>Wisconsin</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Wisconsin Brewing Company</td>
+                <td>Middleton</td>
+                <td>Wisconsin</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Sheeps Brewing Company</td>
+                <td>Sheboygan</td>
+                <td>Wisconsin</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
 
     <!-- Footer Begins -->
     <footer>
@@ -118,6 +194,11 @@
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
   </body>
