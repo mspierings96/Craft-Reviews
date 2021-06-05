@@ -84,4 +84,14 @@ findHighestFive() {
     );
 }
 
+// Search for existing review
+searchExistingReview(){
+    return this.connection.promise().query(
+    `Select r.apiID, r.userName, r.review
+    where r.apiID = ? and r.userName=?;`
+    );
 }
+
+}
+
+module.exports = db;
