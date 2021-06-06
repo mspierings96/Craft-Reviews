@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/* COLORS */
 :root {
   --pirmary: #191414;
   --secondary: #1ed760;
@@ -17,27 +18,90 @@ html {
 }
 
 /* HEADER STYLING */
-
-button:focus {
-  outline: 0;
+header div {
+  background: var(--pirmary);
+  width: 100%;
 }
 
-.navbar .dropdown-menu .form-control {
-  width: 200px;
+header div h1 {
+  color: var(--secondary);
 }
 
+header div h1 span {
+  color: var(--secondary);
+}
 /* END OF HEADER STYLING */
 
-/* SEARCH BAR ON HOME PAGE */
+/* DROPDOWN STYLING  */
+.dropbtn {
+  background-color: var(--pirmary);
+  color: var(--secondary);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
-/* TOP 5 BREWERIES LANDING AREA */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--secondary);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: var(--secondary);
+}
+
+/* END OF DROPDOWN STYLING */
+
+/* COCKTAIL DISPLAY STYLING */
+
+#drink-section img {
+  width: 25%;
+  height: auto;
+}
+
+#drink-section h4 {
+  text-align: auto;
+  font-weight: bold;
+  color: var(--pirmary);
+}
+
+li {
+  list-style-type: none;
+}
+
+/* END OF COCKTAIL DISPLAY SETTING */
 
 /* FOOTER STYLING */
 footer {
   background: var(--pirmary);
   bottom: 0;
   width: 100%;
-  position: bottom;
+  position: static;
   text-decoration: none;
 }
 footer a {
@@ -48,3 +112,123 @@ footer p {
   color: var(--secondary);
 }
 /* END OF FOOTER STYLING */
+
+/* START OF TRIVIA STYLING */
+.trivia-container {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  border-width: 50%;
+  border-color: var(--pirmary);
+  border-style: solid;
+  background-color: var(--third);
+}
+
+.intro {
+  font-weight: bold;
+  color: var(--pirmary);
+}
+
+.answerFeedback {
+  font-weight: bold;
+}
+
+.currentScore {
+  font-weight: bold;
+}
+
+.questions {
+  font-weight: bold;
+}
+
+.trivia-start {
+  background-color: var(--pirmary);
+  color: var(--secondary);
+}
+
+#trueBtn {
+  margin: 10px;
+  width: 50px;
+  background-color: var(--pirmary);
+  color: var(--secondary);
+}
+
+#falseBtn {
+  margin: 10px;
+  width: 50px;
+  background-color: var(--pirmary);
+  color: var(--secondary);
+}
+/* END OF TRIVIA STYLING */
+
+/* START OF MODAL STYLING */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-info {
+  margin: 10% auto;
+  width: 60%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+}
+
+.modal-header {
+  background: var(--pirmary);
+  padding: 15px;
+  color: var(--secondary);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.modal-footer {
+  background: var(--pirmary);
+  padding: 10px;
+  color: var(--secondary);
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.close {
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+  color: #fff;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

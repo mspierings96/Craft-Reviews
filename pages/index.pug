@@ -8,78 +8,55 @@ html(lang="en")
     link(rel='stylesheet', href='./assets/styling.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(role='navigation')
     .container
-    a.navbar-brand(href='#') REVIEW CRAFTS
-    button.navbar-toggler.border-0(type='button', data-toggle='collapse', data-target='#exCollapsingNavbar')
-      | &#x2630;
-    #exCollapsingNavbar.collapse.navbar-collapse
-      ul.nav.navbar-nav.flex-row.justify-content-between.ml-auto
-        li.nav-item.order-2.order-md-1
-          a.nav-link(href='#', title='settings')
-            i.fa.fa-cog.fa-fw.fa-lg
-        li.dropdown.order-1
-          button#dropdownMenu1.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Login 
-            span.caret
-          ul.dropdown-menu.dropdown-menu-right.mt-1
-            li.p-3
-              form.form(role='form')
-                .form-group
-                  input#userNameInput.form-control.form-control-sm(placeholder='User Name', type='text', required='')
-                .form-group
-                  input#passwordInput.form-control.form-control-sm(placeholder='Password', type='text', required='')
-                .form-group
-                  button.btn.btn-primary.btn-block(type='submit')
-                    | Login
+      include includes/header.pug 
 
-    .container
-    h2.mb-3.text-center Search a Brewery
-    form.d-flex
-        input.form-control.mr-2(type='serach', placeholder='Search', aria-label='Search')
-        button.btn.btn-outline-success(type='submit') Search
-    
-    h3.mb-3.text-center TOP 5 BREWERIES 
-    .table-responsive-md 
-    table.top-5.table.table-hover.table-bordered 
-        thead 
-            tr 
-                th Brewery Rank 
-                th Name 
-                th City
-                th State 
-            tr
-                th 1
-                td New Glarus Brewing Company
-                td New Glarus
-                td Wisconsin
-            tr
-                th 2
-                td Central Waters Brewing Company
-                td Amherst
-                td Wisconsin
-            tr
-                th 3
-                td Fox River Brewing Company
-                td Oshkosh
-                td Wisconsin
-            tr
-                th 4
-                td Wisconsin Brewing Company
-                td Middleton
-                td Wisconsin
-            tr
-                th 5
-                td Sheeps Brewing Company
-                td Sheboygan
-                td Wisconsin
+      h2.mb-3.text-center Search a Brewery
+      form.d-flex
+          input.form-control.mr-2(type='serach', placeholder='Search', aria-label='Search')
+          button.btn.btn-outline-success(type='submit') Search
+      
+      h3.mb-3.text-center TOP 5 BREWERIES 
+      .table-responsive-md 
+      table.top-5.table.table-hover.table-bordered 
+          thead 
+              tr 
+                  th Brewery Rank 
+                  th Name 
+                  th City
+                  th State 
+              tr
+                  th 1
+                  td New Glarus Brewing Company
+                  td New Glarus
+                  td Wisconsin
+              tr
+                  th 2
+                  td Central Waters Brewing Company
+                  td Amherst
+                  td Wisconsin
+              tr
+                  th 3
+                  td Fox River Brewing Company
+                  td Oshkosh
+                  td Wisconsin
+              tr
+                  th 4
+                  td Wisconsin Brewing Company
+                  td Middleton
+                  td Wisconsin
+              tr
+                  th 5
+                  td Sheeps Brewing Company
+                  td Sheboygan
+                  td Wisconsin
     footer
-      .section
-        a(href='https://github.com/mspierings96/Craft-Reviews', style='text-decoration: none') GitHub
-        p
-            | Contributions: Adam Olson, Devon Ross, Kaan Nazlioz, Mitchell
-            | Spierings
-
+        .section
+            a(href='https://github.com/adamlsn/project1', style='text-decoration: none') GitHub
+            p
+              | Contributions: Adam Olson, Devon Ross, Kaan Nazlioz, Mitchell
+              | Spierings
+    include includes/footer.pug 
 
   
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
