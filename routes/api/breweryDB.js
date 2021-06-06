@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const fetch = require("node-fetch");
-const searchTerm = require("../../assets/script")
+// const searchTerm = require("../../public/script")
 
 
 router.get("/", (req, res) => {
