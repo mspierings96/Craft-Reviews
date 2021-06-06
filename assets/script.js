@@ -1,8 +1,24 @@
-let inputValue;
+const router = require("express").Router();
 
-$("#search-button").click(function () {
+function citySearch() {
   event.preventDefault();
-  console.log("CLICK WORKS")
-})
+  const searchTerm = document.getElementById("search-input").value
+    .toLowerCase().replace(/ /g,"_");
 
-module.exports = inputValue;
+  if(!searchTerm) return console.log("No Search Term");
+  console.log(searchTerm);
+}
+
+// $("#search-button").click(function(){
+//   event.preventDefault();
+//   citySearch = $("#search-input").val();
+
+//   if(!$("#search-input").val()){
+//     return console.log("No Value");
+//   };
+
+//   cityQuery = citySearch.toLowerCase().replace(/ /g,"_");
+//   console.log(cityQuery);
+// });
+
+module.exports = {router, }

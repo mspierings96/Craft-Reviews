@@ -1,8 +1,7 @@
 const router = require("express").Router();
 const fetch = require("node-fetch");
-// const inputValue = require("../../assets/script");
 
-const city = "madison";
+const city = "milwaukee";
 const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${city}`;
 
 fetch(url).then(
@@ -28,7 +27,7 @@ getID = (data) => {
     return newData;
 };
 
-fetch("https://api.openbrewerydb.org/breweries/10707").then(
+fetch("https://api.openbrewerydb.org/breweries/15067").then(
     function(response){
         if(response.status !== 200){
             console.log(`Looks like there was a problem. Status Code: ${response.status}`)
