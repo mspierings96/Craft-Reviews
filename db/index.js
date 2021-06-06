@@ -2,14 +2,14 @@ const connection = require('../config/connection')
 
 class DB {
     // Keeping a reference to the connection on the class in case we need it later
-    constructor(connection){
-        this.connection = connection;
+    constructor(connection) {
+      this.connection = connection;
     }
 
 
 // find count of reviews by rating scores for brewery
-findTotalsByScore() {
-    return this.connection.promise().query(
+findTotalsByScore(apiID) {
+    return (
         `Select r.apiID, COUNT(CASE WHEN r.review = 5 then 1 else NULL END) as "5-Star", 
         COUNT(CASE WHEN r.review = 4 then 1 else NULL END) as "4-Star", 
         COUNT(CASE WHEN r.review = 3 then 1 else NULL END) as "3-Star", 
@@ -23,7 +23,7 @@ findTotalsByScore() {
 
 // find top 5 by highest rating for top 5 of homepage
 findHighestFive() {
-    return this.connection.promise().query(
+    return (
         `Select a.apiID, a.Ranking, sum(a.ScoreCount) as ScoreCounts 
         from (
         Select apiID, '5Star' Ranking, 5Star ScoreCount
@@ -86,12 +86,17 @@ findHighestFive() {
 
 // Search for existing review
 searchExistingReview(){
-    return this.connection.promise().query(
-    `Select r.apiID, r.userName, r.review
+    return (
+    `Select r.apiID, r.userName, r.review FROM reviews r
     where r.apiID = ? and r.userName=?;`
     );
 }
 
+// Search for existing username
+searchUserName(){
+    return (
+        'select u.userName from users u where u.userName = ?;'
+    );
 }
-
-module.exports = db;
+}
+module.exports = new DB(connection);
