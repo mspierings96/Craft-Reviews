@@ -1,4 +1,3 @@
-
 const express = require('express');
 const mysql = require('mysql2')
 const router = express.Router();
@@ -42,11 +41,11 @@ router.get("/usernamecheck", (req, res) => {
 })
 
 // post new userName
-router.get("/newuser", (req, res) => {
+router.post("/newuser", (req, res) => {
     console.log('post route called')
     Users.create({
-        userName: "testUser",
-        passwords: "testPass"
+        userName: req.body.userName,
+        passwords: req.body.passwords
     }).then(submittedUser => {res.json(submittedUser)})
 })
 

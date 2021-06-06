@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection-sequeilze');
+const sequelize = require('../config/connection-sequelize');
 
 
 class Users extends Model {}
@@ -23,13 +23,3 @@ Users.init(
 );
 
 module.exports = Users;
-
-// module.exports = (sequelize, DataTypes)=>{
-//         const Users =  sequelize.define('users', {
-//             userName: {type: DataTypes.STRING,
-//             allowNull: false},
-//             password: {type: DataTypes.TEXT,
-//             allowNull: false}
-//         })
-//         return Users;
-//     }
