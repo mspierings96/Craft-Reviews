@@ -13,12 +13,6 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-// check for existing username for create account
-router.get("/usernamecheck", (req, res) => {
-    let userName = 'user1'
-    connection.query(db.searchUserName(userName), userName, (err, results)=> {
-        console.log(results)
-    })
-})
+
 
 module.exports = router;

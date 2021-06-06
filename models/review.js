@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connection-sequeilze');
 
 module.exports = (sequelize, DataTypes)=>{
    const Reviews = sequelize.define('reviews', {
