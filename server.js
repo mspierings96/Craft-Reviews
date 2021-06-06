@@ -14,7 +14,7 @@ app.get("/pug", (req, res) => {
 app.get("/", (req, res) => {
   var html = pug.renderFile("./pages/index.pug", {
     youAreUsingPug: true,
-    pageTitle: "Best Page",
+    pageTitle: "Home Page",
   });
 
   res.send(html);

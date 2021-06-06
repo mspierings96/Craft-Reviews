@@ -3,29 +3,64 @@ html(lang="en")
   head
     title= pageTitle
     script(type='text/javascript').
-      if (foo) bar(1 + 5)
-    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-    integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    h1 Pug - node template engine
-    #container.col
-      if youAreUsingPug
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Pug is a terse and simple templating language with a
-        strong focus on performance and powerful features.
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark 
+        a.navbar-brand(href='#') Review Crafts
+  
+        .collapse.navbar-collapse(id='navbarSupportedContent')
+        ul.navbar-nav.float-right
+            li.nav-item.dropdown
+                a.nav-link.dropdown-toggle(id='navbarDropdownMenuLink', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Login 
+                .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+    
+    
+    .container 
+    h2.mb-3.text-center Search for a Brewery
+        form.d-flex
+        input(class="form-control mr-2" type="search" placeholder="Search" aria-label="Search")
+        button(class="btn btn-outline-success" type="submit")
+    h3.mb-3.text-center TOP 5 BREWERIES 
+    .table-responsive-md 
+    table.top-5.table.table-hover.table-bordered 
+        thead 
+            tr 
+                th Brewery Rank 
+                th Name 
+                th City
+                th State 
+            tr
+                th 1
+                td New Glarus Brewing Company
+                td New Glarus
+                td Wisconsin
+            tr
+                th 2
+                td Central Waters Brewing Company
+                td Amherst
+                td Wisconsin
+            tr
+                th 3
+                td Fox River Brewing Company
+                td Oshkosh
+                td Wisconsin
+            tr
+            tr
+                th 4
+                td Wisconsin Brewing Company
+                td Middleton
+                td Wisconsin
+            tr
+                th 5
+                td Sheeps Brewing Company
+                td Sheboygan
+                td Wisconsin
+            
 
-      button.btn.btn-primary button 
-
-script(src='https://code.jquery.com/jquery-3.2.1.min.js'
-           integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
-           crossorigin='anonymous')
-           
-script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
-           integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous')
+  
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
