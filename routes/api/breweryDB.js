@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const fetch = require("node-fetch");
+const searchTerm = require("../../assets/script")
 
-const city = "milwaukee";
+let city = searchTerm;
 const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${city}`;
 
 fetch(url).then(

@@ -1,12 +1,14 @@
 const router = require("express").Router();
+var searchTerm;
 
 function citySearch() {
   event.preventDefault();
-  const searchTerm = document.getElementById("search-input").value
+  searchTerm = document.getElementById("search-input").value
     .toLowerCase().replace(/ /g,"_");
 
   if(!searchTerm) return console.log("No Search Term");
   console.log(searchTerm);
+  return searchTerm;
 }
 
 // $("#search-button").click(function(){
@@ -21,4 +23,4 @@ function citySearch() {
 //   console.log(cityQuery);
 // });
 
-module.exports = {router, }
+module.exports = {router, searchTerm}
