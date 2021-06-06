@@ -6,48 +6,26 @@ html(lang="en")
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/styling.css')
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand(href='') Review Crafts
     .container 
-    h3.mb-3.text-center RANKING RESULTS 
-    .row
-        each brewery in [1,2,3,4]
-            .col-3 
-                .card(style='width: 18rem;')
-                    .card-body
-                        h5.card-title= brewery+ 'brewery'
-                        h6.card-subtitle.mb-2.text-muted Card subtitle
-                        p.card-text
-                            | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                        a.card-link(href='#') Card link
-                        a.card-link(href='#') Another link
-        
+        include includes/header.pug 
 
 
-
-
-    //- style.
-    //-     .checked {
-    //-     color: orange;
-    //-     }
-    //- h2 Star Rating
-    //- span.fa.fa-star.checked
-    //- span.fa.fa-star.checked
-    //- span.fa.fa-star.checked
-    //- span.fa.fa-star
-    //- span.fa.fa-star
-
-
-
-    footer
-        .section
-            a(href='https://github.com/adamlsn/project1', style='text-decoration: none') GitHub
-            p
-              | Contributions: Adam Olson, Devon Ross, Kaan Nazlioz, Mitchell
-              | Spierings
-
+        h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
+        .row.mb-5 
+            each brewery in [1,2,3,4]
+                .col-3 
+                    .card(style='width: auto;')
+                        .card-body
+                            h5.card-title= brewery+ 'brewery'
+                            h6.card-subtitle.mb-2.text-muted Card subtitle
+                            p.card-text
+                                | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
+                            a.card-link(href='#') Card link
+                            a.card-link(href='#') Another link
+            
+        include includes/footer.pug 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

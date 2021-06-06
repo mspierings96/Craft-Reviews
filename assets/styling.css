@@ -77,6 +77,10 @@ header div h1 span {
 
 /* END OF DROPDOWN STYLING */
 
+.card {
+  margin: 0 auto;
+}
+
 /* COCKTAIL DISPLAY STYLING */
 
 #drink-section img {
