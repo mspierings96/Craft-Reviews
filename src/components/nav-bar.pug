@@ -1,0 +1,9 @@
+include ./main-nav
+include ./auth-nav
+
+mixin nav-bar(activeRoute)
+  div(class="nav-container mb-3")
+    nav(class="navbar navbar-expand-md navbar-light bg-light")
+      
+        +main-nav(activeRoute)
+        +auth-nav(isAuthenticated)
