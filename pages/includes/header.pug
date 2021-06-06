@@ -1,0 +1,28 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(role='navigation')
+  .container
+    a.navbar-brand(href='#') REVIEW CRAFTS
+    button.navbar-toggler.border-0(type='button', data-toggle='collapse', data-target='#exCollapsingNavbar')
+      | &#x2630;
+    #exCollapsingNavbar.collapse.navbar-collapse
+      ul.nav.navbar-nav.flex-row.justify-content-between.ml-auto
+        li.nav-item.order-2.order-md-1
+          a.nav-link(href='#', title='Create Account')
+            button.btn.btn-outline-secondary 
+        li.dropdown.order-1
+          button#dropdownMenu1.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
+            | Login 
+            span.caret
+          ul.dropdown-menu.dropdown-menu-right.mt-1
+            li.p-3
+              form.form(role='form')
+                .form-group
+                  input#userNameInput.form-control.form-control-sm(placeholder='User Name', type='text', required='')
+                .form-group
+                  input#passwordInput.form-control.form-control-sm(placeholder='Password', type='text', required='')
+                .form-group
+                  button.btn.btn-primary.btn-block(type='submit')
+                    | Login
+                //
+                  <div class="form-group text-xs-center">
+                  <small><a href="#">Forgot password?</a></small>
+                  </div>
