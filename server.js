@@ -8,7 +8,7 @@ const pug = require("pug");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.static("assets"));
+app.use(express.static("public"));
 
 app.get("/pug", (req, res) => {
   res.send("pug");
