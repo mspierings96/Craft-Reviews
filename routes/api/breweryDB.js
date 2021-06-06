@@ -1,30 +1,14 @@
 const router = require("express").Router();
 const fetch = require("node-fetch");
+// const searchTerm = require("../../public/script")
 
-const city = "madison";
-const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${city}`;
 
-fetch(url).then(
-    function(response){
-        if(response.status !== 200){
-            console.log(`Looks like there was a problem. Status Code: ${response.status}`)
-            return;
-        }
+router.get("/", (req, res) => {
+    console.log("Result routes work");
+})
 
-        response.json().then(function(data){
-            const idArr = getID(data);
-            console.log(idArr);
-        })
-    }
-);
-
-getID = (data) => {
-    const arrLength = data.length;
-    const newData = []
-    for(i = 0; i < arrLength; i++) {
-        newData.push(data[i].id)
-    };
-    return newData;
-};
+router.get("/:id", (req, res) => {
+    console.log("ID routes work");
+})
 
 module.exports = router;

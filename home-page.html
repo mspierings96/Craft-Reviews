@@ -6,8 +6,7 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./assets/styling.css" />
-    <link rel="stylesheet" href="./assets/script.js" />
+    <link rel="stylesheet" href="./public/styling.css" />
 
     <!-- IMPORTING BOOTSTRAP -->
     <link
@@ -22,12 +21,13 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
     <!-- Header Begins -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
       <div class="container">
-        <a class="navbar-brand" href="#">REVIEW CRAFTS</a>
+        <a class="navbar-brand" href="*">REVIEW CRAFTS</a>
         <button
           class="navbar-toggler border-0"
           type="button"
@@ -93,15 +93,22 @@
     <main>
       <!-- TOP 5 BREWERY LANDING AREA -->
       <div class="container">
-        <h2 class="mb-3 text-center">Search a Brewery</h2>
+        <h2 class="mb-3 text-center">Search a City Name</h2>
         <form class="d-flex">
           <input
             class="form-control mr-2"
             type="serach"
             placeholder="Search"
             aria-label="Search"
+            id="search-input"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button 
+            class="btn btn-outline-success" 
+            type="submit" 
+            id="search-button" 
+            onclick="citySearch(event)">
+            Search
+          </button>
         </form>
         <!-- <div class="input-group col-lg-8 col-md-10 col-sm-12">
             <div class="form-outline">
@@ -180,12 +187,7 @@
       </div>
     </footer>
     <!-- Footer Ends -->
-
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+    <script src="./public/script.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
