@@ -1,6 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2')
-const router = express.Router();
+const router = require('./index');
 const Users = require('../models/users');
 const connection = require('../config/connection-mysql')
 
@@ -25,8 +25,8 @@ router.get("/rating", (req, res) => {
 
 // check for exisiting review by user for brewery
 router.get("/Reviewed", (req, res) => {
-    let apiID ='5051'
-    let userName = 'user1'
+    let apiID ='5051';
+    let userName = 'user1';
     connection.query(db.searchExistingReview(apiID, userName), [apiID, userName], (err, results) => {
     console.log(results)
     })

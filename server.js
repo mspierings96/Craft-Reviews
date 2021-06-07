@@ -2,7 +2,7 @@
 // ==============================
 const express = require('express');
 const db = require("./models");
-const routes = require("./routes");
+const routes = require("./routes/rate-routes");
 const path = require("path")
 const sequelize = require("./config/connection-sequelize");
 const mysql = require("mysql2");
