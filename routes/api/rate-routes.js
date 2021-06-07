@@ -1,10 +1,10 @@
 const express = require('express');
 const mysql = require('mysql2')
 const router = express.Router();
-const Users = require('../models/users');
-const connection = require('../config/connection-mysql')
+const Users = require('../../models/users');
+const connection = require('../../config/connection-mysql')
 
-const db = require("../db");
+const db = require("../../db");
 
 
 
