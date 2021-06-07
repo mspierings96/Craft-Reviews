@@ -9,10 +9,8 @@ html(lang="en")
   body
     .container
         include includes/header.pug 
-        include includes/login-button.pug
-        
-        
-
+         
+            
         h2.mb-3.text-center.mb-5.mt-5 Search a Brewery
         form.d-flex.mb-5
             input#search-input.form-control.mr-2(type='serach', placeholder='Search', aria-label='Search')
@@ -52,7 +50,7 @@ html(lang="en")
                     td Sheeps Brewing Company
                     td Sheboygan
                     td Wisconsin
-          
+       
         include includes/footer.pug 
     
     script(src='/script.js')
