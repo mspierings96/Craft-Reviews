@@ -14,16 +14,24 @@ html(lang="en")
 
         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
         .row.mb-5 
-            each brewery in [1,2,3,4]
+            each brewery in [1,2,3,4,5]
                 .col-3 
                     .card(style='width: auto;')
                         .card-body
                             h5.card-title= brewery+ 'brewery'
-                            h6.card-subtitle.mb-2.text-muted Card subtitle
+                            h6.phone-number.mb-2.text-muted Phone Number
                             p.card-text
                                 | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                            a.card-link(href='#') Card link
-                            a.card-link(href='#') Another link
+                            a.card-link(href='') Brewery URL 
+                            .dropdown
+                                button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                    | Rating
+                                .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                                    a.dropdown-item(href='#') 1
+                                    a.dropdown-item(href='#') 2
+                                    a.dropdown-item(href='#') 3
+                                    a.dropdown-item(href='#') 4
+                                    a.dropdown-item(href='#') 5
             
         include includes/footer.pug 
 
