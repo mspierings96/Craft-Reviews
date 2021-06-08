@@ -8,6 +8,7 @@ const sequelize = require("./config/connection-sequelize");
 const mysql = require("mysql2");
 
 const pug = require("pug");
+const connection = require("./config/connection-mysql");
 
 //Sets up the Express App
 //===============================
@@ -15,6 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.static("public"));
+app.use(routes)
 
 app.get("/pug", (req, res) => {
   res.send("pug");
@@ -37,6 +39,7 @@ app.get("/results", (req, res) => {
 
   res.send(html);
 });
+
 
 app.listen(PORT, () => {
   console.log("Server listening on: " + PORT);
