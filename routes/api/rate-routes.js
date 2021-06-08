@@ -25,8 +25,8 @@ router.get("/rating", (req, res) => {
 
 // check for exisiting review by user for brewery
 router.get("/Reviewed", (req, res) => {
-    let apiID ='5051'
-    let userName = 'user1'
+    let apiID ='5051';
+    let userName = 'user1';
     connection.query(db.searchExistingReview(apiID, userName), [apiID, userName], (err, results) => {
     console.log(results)
     })
