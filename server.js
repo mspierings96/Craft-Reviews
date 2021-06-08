@@ -48,6 +48,8 @@ app.use((req,res,next) => {
   next();
 });
 
+app.use(routes);
+
 app.get("/pug", (req, res) => {
   res.send("pug");
 });
@@ -80,12 +82,13 @@ app.get("/results/:query", (req, res) => {
 });
 
 app.get('/Profile',requiresAuth(),(req,res) => {
-  res.send(JSON.stringify(req.oidc.user))
+  
   var html = pug.renderFile("./pages/profile.pug",{
     youAreUsingPug:true,
-    pageTitle:"Profile"
+    pageTitle:"Profile",
+    user:req.oidc.user,
   })
-
+  res.send(html)
 });
 
 
