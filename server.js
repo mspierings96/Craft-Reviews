@@ -40,7 +40,7 @@ app.get("/results/:query", (req, res) => {
 
   Axios.all([
     Axios.get("https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" + req.params.query),
-    app.get("/routes/api/brewery")
+    app.get("./routes/api/rate/test")
   ])
   .then(Axios.spread((brewery, rating) => {
     console.log("Brew data", brewery);
@@ -49,7 +49,7 @@ app.get("/results/:query", (req, res) => {
       youAreUsingPug: true,
       pageTitle: "Results Page",
       breweryResults: brewery.data,
-      ratingResults: rating.data
+      ratingResults: rating
     });
 
     res.send(html);
