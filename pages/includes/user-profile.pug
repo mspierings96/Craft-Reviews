@@ -1,0 +1,32 @@
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(role='navigation')
+  .container
+    a.navbar-brand(href='#') REVIEW CRAFTS
+    .collapse.navbar-collapse(id='navbarSupportedContent')
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.nav-link(href='/') Home
+      li.nav-item
+        a.nav-link(href='/Profile') Profile
+      li.nav-item
+    ul.navbar-nav.float-right
+      li.nav-item
+        a.nav-link(href='/logout') Logout
+        block content
+include ../includes/layout.pug
+
+  body
+    h1.border.center 
+    //add your code below, make sure its indented at this level
+
+    img(class="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
+        src=user.picture
+        alt="Profile")
+    h2.center#welcome Welcome, #{user.name}!
+    h3.center Your email is: #{user.email}
+    h3.center #{user.name} has liked this page.
+
+
+
+  
+
