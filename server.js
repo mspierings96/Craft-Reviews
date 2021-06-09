@@ -11,6 +11,8 @@ const Axios = require("axios");
 
 const pug = require("pug");
 const connection = require("./config/connection-mysql");
+const { default: axios } = require("axios");
+const { dirname } = require("path");
 
 //Sets up the Express App
 //===============================
@@ -36,19 +38,35 @@ app.get("/", (req, res) => {
 app.get("/results/:query", (req, res) => {
   // do the api call and then render pug page
 
-  Axios.get(
-    "https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" +
-      req.params.query
-  ).then(function (data) {
-    console.log("brew data", data);
-    var html = pug.renderFile("./pages/results.pug", {
+  Axios.all([
+    Axios.get("https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" + req.params.query),
+    app.get("/routes/api/brewery")
+  ])
+  .then(Axios.spread((brewery, rating) => {
+    console.log("Brew data", brewery);
+    console.log("Rating data", rating);
+    let html = pug.renderFile("./pages/results.pug", {
       youAreUsingPug: true,
       pageTitle: "Results Page",
-      searchResults: data.data,
+      breweryResults: brewery.data,
+      ratingResults: rating.data
     });
 
     res.send(html);
-  });
+  }));
+  // Axios.get(
+  //   "https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" +
+  //     req.params.query
+  // ).then(function (data) {
+  //   console.log("brew data", data);
+  //   var html = pug.renderFile("./pages/results.pug", {
+  //     youAreUsingPug: true,
+  //     pageTitle: "Results Page",
+  //     breweryResults: data.data,
+  //   });
+
+  //   res.send(html);
+  // });
 });
 
 
