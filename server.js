@@ -1,18 +1,12 @@
 // Dependencies
 // ==============================
 const express = require("express");
-const db = require("./models");
+const fetch = require("node-fetch");
+const connection = require('./config/connection-mysql')
+const db = require("./db");
 const routes = require("./routes");
-const path = require("path");
-const sequelize = require("./config/connection-sequelize");
-const mysql = require("mysql2");
-
 const Axios = require("axios");
-
 const pug = require("pug");
-const connection = require("./config/connection-mysql");
-const { default: axios } = require("axios");
-const { dirname } = require("path");
 
 //Sets up the Express App
 //===============================
@@ -37,36 +31,52 @@ app.get("/", (req, res) => {
 
 app.get("/results/:query", (req, res) => {
   // do the api call and then render pug page
+  const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${req.params.query}`;
+  
+  var apiID = [];
 
-  Axios.all([
-    Axios.get("https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" + req.params.query),
-    app.get("./routes/api/rate/test")
-  ])
-  .then(Axios.spread((brewery, rating) => {
-    console.log("Brew data", brewery);
-    console.log("Rating data", rating);
-    let html = pug.renderFile("./pages/results.pug", {
+  fetch(url).then(
+    function(response){
+        if(response.status !== 200){
+            console.log(`Looks like there was a problem. Status Code: ${response.status}`)
+            return;
+        }
+
+        response.json().then(function(data){
+            const idArr = getID(data);
+            return apiID = idArr;
+        })
+    }
+  )
+
+  getID = (data) => {
+      const arrLength = data.length;
+      const newData = []
+      for(i = 0; i < arrLength; i++) {
+          newData.push(data[i].id)
+      };
+      return newData;
+  };
+
+  console.log(apiID);
+
+  // for(i = 0; i < apiID.length; i++){
+  //   connection.query(db.findTotalsByScore(apiID[i]), apiID[i],(err, results) => {
+  //     console.log(results);
+  //   })
+  // }
+  
+
+  Axios.get(url).then(function (data) {
+    // console.log(results);
+    var html = pug.renderFile("./pages/results.pug", {
       youAreUsingPug: true,
       pageTitle: "Results Page",
-      breweryResults: brewery.data,
-      ratingResults: rating
+      breweryResults: data.data,
     });
 
     res.send(html);
-  }));
-  // Axios.get(
-  //   "https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" +
-  //     req.params.query
-  // ).then(function (data) {
-  //   console.log("brew data", data);
-  //   var html = pug.renderFile("./pages/results.pug", {
-  //     youAreUsingPug: true,
-  //     pageTitle: "Results Page",
-  //     breweryResults: data.data,
-  //   });
-
-  //   res.send(html);
-  // });
+  });
 });
 
 
