@@ -23,6 +23,9 @@ button:focus {
 .navbar .dropdown-menu .form-control {
   width: 200px;
 }
+#login-form,#signup-form {
+  background-color: black;
+}
 
 /* END OF HEADER STYLING */
 

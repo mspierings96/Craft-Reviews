@@ -1,4 +1,4 @@
-// const connection = require('../config/connection-mysql')
+// const connection = require('../config/connection')
 
 // class DB {
 //     // Keeping a reference to the connection on the class in case we need it later
@@ -31,15 +31,15 @@
 // // Search for existing review
 // searchExistingReview(){
 //     return (
-//     `Select r.apiID, r.userName, r.review FROM reviews r
-//     where r.apiID = ? and r.userName=?;`
+//     `Select r.apiID, r.username, r.review FROM reviews r
+//     where r.apiID = ? and r.username=?;`
 //     );
 // }
 
 // // Search for existing username
 // searchUserName(){
 //     return (
-//         'select u.userName from users u where u.userName = ?;'
+//         'select u.username from users u where u.username = ?;'
 //     );
 // }
 // }

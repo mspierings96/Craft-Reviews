@@ -1,46 +1,46 @@
-//- doctype html
-//- html(lang="en")
-//-   head
-//-     title= pageTitle
-//-     script(type='text/javascript').
-//-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
-//-     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-//-     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-//-     link(rel='stylesheet', href='/styling.css')
-//-   body
-//-     .container 
-//-         include includes/header.pug 
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .container 
+        include layouts/header.pug 
 
-//-         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
-//-         .row.mb-5 
-//-             each brewery in searchResults
-//-                 .col-3 
-//-                     .card(style='width: auto;').card-dark.bg-dark.text-white
-//-                         .card-body
-//-                             h5.card-title= brewery.name
-//-                             h6.phone-number.mb-2.text-white= brewery.phone 
-//-                             p.card-text
-//-                                 ul
-//-                                     li.brewery-type=' Brewery Type: ' + brewery.brewery_type
-//-                                     li.brewery-street=' Street: ' + brewery.street
-//-                                 a.card-link(href=brewery.website_url, target='_blank')=brewery.website_url
-//-                             //- .dropdown
-//-                             //-     button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
-//-                             //-         | Rating
-//-                             //-     .dropdown-menu(aria-labelledby='dropdownMenuButton')
-//-                             //-         a.dropdown-item(href='#') 1
-//-                             //-         a.dropdown-item(href='#') 2
-//-                             //-         a.dropdown-item(href='#') 3
-//-                             //-         a.dropdown-item(href='#') 4
-//-                             //-         a.dropdown-item(href='#') 5
-//-                             p.card-text 
-//-                                 ul 
-//-                                     li.brewery-score-average=' Rating Average: ' + brewery.id + ' /5 '
+        h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
+        .row.mb-5 
+            each brewery in searchResults
+                .col-3 
+                    .card(style='width: auto;').card-dark.bg-dark.text-white
+                        .card-body
+                            h5.card-title= brewery.name
+                            h6.phone-number.mb-2.text-white= brewery.phone 
+                            p.card-text
+                                ul
+                                    li.brewery-type=' Brewery Type: ' + brewery.brewery_type
+                                    li.brewery-street=' Street: ' + brewery.street
+                                a.card-link(href=brewery.website_url, target='_blank')=brewery.website_url
+                            //- .dropdown
+                            //-     button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
+                            //-         | Rating
+                            //-     .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                            //-         a.dropdown-item(href='#') 1
+                            //-         a.dropdown-item(href='#') 2
+                            //-         a.dropdown-item(href='#') 3
+                            //-         a.dropdown-item(href='#') 4
+                            //-         a.dropdown-item(href='#') 5
+                            p.card-text 
+                                ul 
+                                    li.brewery-score-average=' Rating Average: ' + brewery.id + ' /5 '
                                 
                                 
             
-//-         include includes/footer.pug 
+        include layouts/footer.pug 
 
-//-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-//-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-//-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -1,13 +1,13 @@
-// function citySearch(event) {
-//   event.preventDefault();
-//   let searchTerm = document
-//     .getElementById("search-input")
-//     .value.toLowerCase()
-//     .replace(/ /g, "_");
+function citySearch(event) {
+  event.preventDefault();
+  let searchTerm = document
+    .getElementById("search-input")
+    .value.toLowerCase()
+    .replace(/ /g, "_");
 
-//   if (!searchTerm) console.log("No Search Term");
+  if (!searchTerm) console.log("No Search Term");
 
-//   window.location.href = "/results/" + searchTerm;
+  window.location.href = "/results/" + searchTerm;
 //   // let url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${searchTerm}`;
 
 //   //   fetch(url).then(
@@ -49,8 +49,8 @@
 //   //           })
 //   //       }
 //   //   )
-//   console.log(searchTerm);
-// /}
+   console.log(searchTerm);
+}
 async function signupFormHandler(event) {
     event.preventDefault();
   

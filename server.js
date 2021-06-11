@@ -7,7 +7,8 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const session =require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-// const Axios = require("axios");
+const Axios = require('axios');
+const pug = require('pug');
 
 const sess = {
   secret:'Super secret secret',
@@ -36,24 +37,28 @@ app.use(express.static(path.join(__dirname,'public')))
 
 app.use(routes);
 
+app.get("/pug", (req, res) => {
+  res.send("pug");
+});
 
-// app.get("/results/:query", (req, res) => {
-//   // do the api call and then render pug page
 
-//   Axios.get(
-//     "https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" +
-//       req.params.query
-//   ).then(function (data) {
-//     console.log("brew data", data);
-//     var html = pug.renderFile("./pages/results.pug", {
-//       youAreUsingPug: true,
-//       pageTitle: "Results Page",
-//       searchResults: data.data,
-//     });
+app.get("/results/:query", (req, res) => {
+  // do the api call and then render pug page
 
-//     res.send(html);
-//   });
-// });
+  Axios.get(
+    "https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" +
+      req.params.query
+  ).then(function (data) {
+    console.log("brew data", data);
+    var html = pug.renderFile("./views/results.pug", {
+      youAreUsingPug: true,
+      pageTitle: "Results Page",
+      searchResults: data.data,
+    });
+
+    res.send(html);
+  });
+});
 
 sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
