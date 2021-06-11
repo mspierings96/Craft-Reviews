@@ -1,14 +1,12 @@
 // Dependencies
 // ==============================
 const express = require("express");
-const fetch = require("node-fetch");
 const connection = require('./config/connection-mysql')
 const db = require("./db");
 const routes = require("./routes");
 const Axios = require("axios");
 const pug = require("pug");
 const { compare } = require("bcrypt");
-const { rawListeners } = require("./config/connection-mysql");
 
 //Sets up the Express App
 //===============================
@@ -34,23 +32,44 @@ app.get("/", (req, res) => {
 app.get("/results/:query", (req, res) => {
   // do the api call and then render pug page
   const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${req.params.query}`;
-  
-  Axios.get(url).then(function (results) {
-    console.log(results.data[0].id);
-    let apiID = 5051
 
-    connection.query(db.findTotalsByScore(apiID), apiID,(err, results) => {
-      const obj = results[0].AvgReview;
-      console.log(obj);
+  Axios.get(url).then(function (results) {
+    const idArr = [];
+    // console.log(results.data);
+    for(i = 0; i < results.data.length; i++){
+      idArr.push(results.data[i].id);
+    }
+
+    let reviewArr = [];
+
+    let buildArr = new Promise((resolve, reject) => {
+      for(i = 0; i < idArr.length; i++){
+        // const apiID = idArr[i];
+        const apiID = 5051;
+        // console.log(apiID);
+        connection.query(db.findTotalsByScore(apiID), apiID,(err, res) => {
+          if(res[0] === undefined){
+            reviewArr.push("Undefined");
+          }
+          else if(res[0] != undefined){
+            // console.log("test", res[0].AvgReview)
+            reviewArr.push(res[0].AvgReview);
+            console.log("reviewArr", reviewArr)
+          }
+          else{
+            resolve("Loop Comlete")
+          }
+        });
+      }
+    })
+    buildArr.then((message) => {
+      console.log("After Promise: ",reviewArr)
+      // console.log("Brewery Results: ", results.data)
+    })
+    .catch((error) => {
+      console.log("Failed")
     })
 
-    let html = pug.renderFile("./pages/results.pug", {
-      youAreUsingPug: true,
-      pageTitle: "Results Page",
-      breweryResults: results.data,
-    });
-
-    res.send(html);
   });
 });
 
