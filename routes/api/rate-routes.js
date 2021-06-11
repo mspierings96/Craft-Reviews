@@ -46,7 +46,6 @@ router.put("/updaterating", (req, res) => {
 // create rating on brewery by user
 router.post("/newrate", (req, res) => {
     console.log('post rate route called')
-    //console.log(req.body);
     console.log(req.params)
     Reviews.create({
         apiID: req.body.apiID,
@@ -54,29 +53,5 @@ router.post("/newrate", (req, res) => {
         userName: req.body.userName
     }).then(submittedReview => {res.json(submittedReview)})
 });
-
-router.get("/test", (req,res)=>
-{
-    Reviews.findAll({}).then(dbTest => {
-        console.log(dbTest);
-    })
-})
-
-// // check for existing username for create account
-// router.get("/usernamecheck", (req, res) => {
-//     let userName = 'user1'
-//     connection.query(db.searchUserName(userName), userName, (err, results)=> {
-//         console.log(results)
-//     })
-// })
-
-// // post new userName
-// router.post("/newuser", (req, res) => {
-//     console.log('post route called')
-//     Users.create({
-//         userName: req.body.userName,
-//         passwords: req.body.passwords
-//     }).then(submittedUser => {res.json(submittedUser)})
-// })
 
 module.exports = router;
