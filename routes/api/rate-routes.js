@@ -5,6 +5,7 @@ const Users = require('../../models/users');
 const connection = require('../../config/connection-mysql')
 
 const db = require("../../db");
+const Reviews = require('../../models/reviews');
 
 
 
@@ -32,21 +33,50 @@ router.get("/Reviewed", (req, res) => {
     })
 })
 
-// check for existing username for create account
-router.get("/usernamecheck", (req, res) => {
-    let userName = 'user1'
-    connection.query(db.searchUserName(userName), userName, (err, results)=> {
-        console.log(results)
+// update existing review on brewery by user
+router.put("/updaterating", (req, res) => {
+    console.log('update rating called')
+    Review.update({
+        apiID: req.body.apiID,
+        userName: req.body.userName,
+        review: req.body.review
     })
 })
 
-// post new userName
-router.post("/newuser", (req, res) => {
-    console.log('post route called')
-    Users.create({
-        userName: req.body.userName,
-        passwords: req.body.passwords
-    }).then(submittedUser => {res.json(submittedUser)})
+// create rating on brewery by user
+router.post("/newrate", (req, res) => {
+    console.log('post rate route called')
+    //console.log(req.body);
+    console.log(req.params)
+    Reviews.create({
+        apiID: req.body.apiID,
+        review: req.body.review,
+        userName: req.body.userName
+    }).then(submittedReview => {res.json(submittedReview)})
+});
+
+router.get("/test", (req,res)=>
+{
+    Reviews.findAll({}).then(dbTest => {
+        console.log(dbTest);
+    })
 })
+
+// // check for existing username for create account
+// router.get("/usernamecheck", (req, res) => {
+//     let userName = 'user1'
+//     connection.query(db.searchUserName(userName), userName, (err, results)=> {
+//         console.log(results)
+//     })
+// })
+
+// // post new userName
+// router.post("/newuser", (req, res) => {
+//     console.log('post route called')
+//     Users.create({
+//         userName: req.body.userName,
+//         passwords: req.body.passwords
+//     }).then(submittedUser => {res.json(submittedUser)})
+// })
 
 module.exports = router;

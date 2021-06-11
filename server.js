@@ -17,6 +17,7 @@ const connection = require("./config/connection-mysql");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(express.json());
 app.use(express.static("public"));
 app.use(routes);
 
