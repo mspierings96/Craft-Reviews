@@ -6,14 +6,12 @@
 
 :root {
   --pirmary: #191414;
-  --secondary: #1ed760;
-  --third: #1db954;
-  --fourth: #ffffff;
+  --secondary: #ffffff;
 }
 
 body,
 html {
-  background: #b3b3b3;
+  background: #ffffff;
 }
 
 /* HEADER STYLING */
@@ -32,8 +30,7 @@ button:focus {
 
 /* TOP 5 BREWERIES LANDING AREA */
 
-/* FOOTER STYLING */
-footer {
+FOOTER STYLING footer {
   background: var(--pirmary);
   bottom: 0;
   width: 100%;

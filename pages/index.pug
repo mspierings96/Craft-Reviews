@@ -9,15 +9,15 @@ html(lang="en")
   body
     .container
         include includes/header.pug 
-
+            
         h2.mb-3.text-center.mb-5.mt-5 Search a Brewery
         form.d-flex.mb-5
             input#search-input.form-control.mr-2(type='serach', placeholder='Search', aria-label='Search')
-            button#search-button.btn.btn-outline-success(type='submit', onclick='citySearch(event)') Search
+            button#search-button.btn.btn-dark.bg-dark.btn-outline-success(type='submit', onclick='citySearch(event)') Search
         
         h3.mb-3.text-center TOP 5 BREWERIES 
         .table-responsive-md 
-        table.top-5.table.table-hover.table-bordered 
+        table.top-5.table.table-dark.bg-dark.table-hover.table-bordered 
             thead 
                 tr 
                     th Brewery Rank 
@@ -48,9 +48,9 @@ html(lang="en")
                     th 5
                     td Sheeps Brewing Company
                     td Sheboygan
-                    td Wisconsin
-          
-        include includes/footer.pug 
+                    td Wisconsin      
+    
+        include includes/footer.pug  
     
     script(src='/script.js')
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')

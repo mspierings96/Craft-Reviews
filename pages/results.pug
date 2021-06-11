@@ -10,13 +10,15 @@ html(lang="en")
   body
     .container 
         include includes/header.pug 
+       
+       
 
 
         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
         .row.mb-5 
             each brewery in searchResults
                 .col-3 
-                    .card(style='width: auto;')
+                    .card(style='width: auto;').card-dark.bg-dark.text-white
                         .card-body
                             h5.card-title= brewery.name+ 'brewery'
                             h6.phone-number.mb-2.text-muted= brewery.phone 
