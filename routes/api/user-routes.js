@@ -11,13 +11,11 @@ const db = require("../../db");
 router.get("/usernamecheck", (req, res) => {
     let userName = 'user1'
     connection.query(db.searchUserName(userName), userName, (err, results)=> {
-        console.log(results)
     })
 })
 
 // post new userName
 router.post("/newuser", (req, res) => {
-    console.log('post route called')
     Users.create({
         userName: req.body.userName,
         passwords: req.body.passwords

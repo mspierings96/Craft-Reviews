@@ -12,7 +12,7 @@ const Reviews = require('../../models/reviews');
 // get top 5 highest rated breweries for home page
 router.get("/top5", (req, res) => {
     connection.query(db.findHighestFive(),(err, results) => {
-        console.log(results);
+        
     })
 });
 
@@ -20,7 +20,7 @@ router.get("/top5", (req, res) => {
 router.get("/rating", (req, res) => {
     let apiID='5051'
     connection.query(db.findTotalsByScore(apiID), apiID,(err, results) => {
-        console.log(results)
+        
     })
 });
 
@@ -29,13 +29,11 @@ router.get("/Reviewed", (req, res) => {
     let apiID ='5051';
     let userName = 'user1';
     connection.query(db.searchExistingReview(apiID, userName), [apiID, userName], (err, results) => {
-    console.log(results)
     })
 })
 
 // update existing review on brewery by user
 router.put("/updaterating", (req, res) => {
-    console.log('update rating called')
     Reviews.update(
         {
             review: req.body.review
@@ -53,8 +51,6 @@ router.put("/updaterating", (req, res) => {
 
 // create rating on brewery by user
 router.post("/newrate", (req, res) => {
-    console.log('post rate route called')
-    console.log(req.params)
     Reviews.create({
         apiID: req.body.apiID,
         review: req.body.review,
@@ -62,10 +58,5 @@ router.post("/newrate", (req, res) => {
     }).then(submittedReview => {res.json(submittedReview)})
 });
 
-router.get("/test", (req, res) => {
-    Users.findAll({}).then(dbTest => {
-        console.log(dbTest);
-    })
-})
 
 module.exports = router;
