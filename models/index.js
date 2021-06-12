@@ -1,4 +1,4 @@
-const Review = require('./review');
+const Review = require('./reviews');
 const Users = require('./users');
 
 

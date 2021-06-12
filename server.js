@@ -6,14 +6,45 @@ const db = require("./db");
 const routes = require("./routes");
 const Axios = require("axios");
 const pug = require("pug");
-const { parse } = require("path");
+require('dotenv').config();
+
+const {auth, requiresAuth} =require('express-openid-connect');
 
 //Sets up the Express App
 //===============================
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(express.json());
 app.use(express.static("public"));
+app.use(
+  auth({
+    authRequired:false,
+    auth0Logout:true,
+      issuerBaseURL:process.env.AUTH0_ISSUER_BASE_URL,
+      baseURL:process.env.BASE_URL,
+      clientID:process.env.AUTH0_CLIENT_ID,
+      secret:process.env.CLIENT_SECRET,
+
+  })
+);
+app.get('/login',(req,res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+
+app.get('/sign-up',(req,res) => {
+  res.oidc.login({
+    authorizationParams:{
+      screen_hint:'sign-up',
+    },
+  });
+});
+app.use((req,res,next) => {
+  res.locals.isAuthenticated = req.oidc.isAuthenticated();
+  next();
+});
+
 app.use(routes);
 
 app.get("/pug", (req, res) => {
@@ -66,6 +97,16 @@ app.get("/results/:query", async (req, res) => {
   });
   
   res.send(html);
+});
+
+app.get('/Profile',requiresAuth(),(req,res) => {
+  
+  var html = pug.renderFile("./pages/profile.pug",{
+    youAreUsingPug:true,
+    pageTitle:"Profile",
+    user:req.oidc.user,
+  })
+  res.send(html)
 });
 
 

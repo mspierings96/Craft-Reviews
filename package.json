@@ -23,6 +23,7 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-openid-connect": "^2.4.0",
     "jquery": "^3.6.0",
     "jsdom": "^16.6.0",
     "moustache": "0.0.4",

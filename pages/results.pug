@@ -11,19 +11,19 @@ html(lang="en")
     .container 
         include includes/header.pug 
 
-
         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
         .row.mb-5 
             each brewery in breweryResults
                 .col-3 
-                    .card(style='width: auto;')
+                    .card(style='width: auto;').card-dark.bg-dark.text-white
                         .card-body
-                            h5.card-title= brewery.name+ 'brewery'
-                            h6.phone-number.mb-2.text-muted= brewery.phone 
+                            h5.card-title= brewery.name
+                            h6.phone-number.mb-2.text-white= brewery.phone 
                             p.card-text
                                 ul
                                     li.brewery-type=' Brewery Type: ' + brewery.brewery_type
                                     li.brewery-street=' Street: ' + brewery.street
+<<<<<<< HEAD
                             a.card-link(href=brewery.website_url)=brewery.website_url
                             .dropdown
                                 button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
@@ -37,6 +37,23 @@ html(lang="en")
                             p.card.text
                                 ul
                                     li.brewery-score-average='Rating Average: ' + '/5'
+=======
+                                a.card-link(href=brewery.website_url, target='_blank')=brewery.website_url
+                            //- .dropdown
+                            //-     button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
+                            //-         | Rating
+                            //-     .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                            //-         a.dropdown-item(href='#') 1
+                            //-         a.dropdown-item(href='#') 2
+                            //-         a.dropdown-item(href='#') 3
+                            //-         a.dropdown-item(href='#') 4
+                            //-         a.dropdown-item(href='#') 5
+                            p.card-text 
+                                ul 
+                                    li.brewery-score-average=' Rating Average: ' + brewery.id + ' /5 '
+                                
+                                
+>>>>>>> develop
             
         include includes/footer.pug 
 
