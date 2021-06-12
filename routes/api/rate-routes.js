@@ -9,6 +9,7 @@ const Reviews = require('../../models/reviews');
 
 
 
+
 // get top 5 highest rated breweries for home page
 router.get("/top5", (req, res) => {
     connection.query(db.findHighestFive(),(err, results) => {
@@ -36,12 +37,20 @@ router.get("/Reviewed", (req, res) => {
 // update existing review on brewery by user
 router.put("/updaterating", (req, res) => {
     console.log('update rating called')
-    Review.update({
-        apiID: req.body.apiID,
-        userName: req.body.userName,
-        review: req.body.review
-    })
-})
+    Reviews.update(
+        {
+            review: req.body.review
+        },
+        {
+            where: {
+                userName: req.body.userName,
+                apiID: req.body.apiID
+            }
+        }
+    ).then(updateRating => {res.json(updateRating)}
+    );
+});
+
 
 // create rating on brewery by user
 router.post("/newrate", (req, res) => {
