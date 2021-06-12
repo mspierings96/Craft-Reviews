@@ -1,5 +1,4 @@
 const express = require('express');
-const mysql = require('mysql2')
 const router = express.Router();
 const Users = require('../../models/users');
 const connection = require('../../config/connection-mysql')
@@ -13,7 +12,7 @@ const Reviews = require('../../models/reviews');
 // get top 5 highest rated breweries for home page
 router.get("/top5", (req, res) => {
     connection.query(db.findHighestFive(),(err, results) => {
-        console.log(results)
+        console.log(results);
     })
 });
 
@@ -62,5 +61,11 @@ router.post("/newrate", (req, res) => {
         userName: req.body.userName
     }).then(submittedReview => {res.json(submittedReview)})
 });
+
+router.get("/test", (req, res) => {
+    Users.findAll({}).then(dbTest => {
+        console.log(dbTest);
+    })
+})
 
 module.exports = router;

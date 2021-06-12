@@ -1,14 +1,10 @@
 // Dependencies
 // ==============================
 const express = require("express");
-const db = require("./models");
+const connection = require('./config/connection-mysql')
+const db = require("./db");
 const routes = require("./routes");
-const path = require("path");
-const sequelize = require("./config/connection-sequelize");
-const mysql = require("mysql2");
-
 const Axios = require("axios");
-
 const pug = require("pug");
 require('dotenv').config();
 
@@ -64,22 +60,44 @@ app.get("/", (req, res) => {
   res.send(html);
 });
 
-app.get("/results/:query", (req, res) => {
+app.get("/results/:query", async (req, res) => {
   // do the api call and then render pug page
+  const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${req.params.query}`;
 
-  Axios.get(
-    "https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=" +
-      req.params.query
-  ).then(function (data) {
-    console.log("brew data", data);
-    var html = pug.renderFile("./pages/results.pug", {
-      youAreUsingPug: true,
-      pageTitle: "Results Page",
-      searchResults: data.data,
-    });
+  let reviewArr = [];
+  let idArr = [];
+  let html;
 
-    res.send(html);
+  const results = await Axios.get(url);
+
+  for(i = 0; i < results.data.length; i++){
+    idArr.push(results.data[i].id);
+  }
+  
+  for(i = 0; i < idArr.length; i++){
+    const apiID = idArr[i];
+    // const apiID = 5051;
+
+    const data = await connection.promise().query(db.findTotalsByScore(apiID), apiID)
+    const parsedData = JSON.parse(JSON.stringify(data[0]));
+
+    if(parsedData[0] === undefined){
+      reviewArr.push("No Reviews!")
+    } else {
+      const finalReview = parsedData[0].AvgReview.slice(0,3);
+      reviewArr.push(`${finalReview}/5`)
+    }
+  };
+
+
+  html = pug.renderFile("./pages/results.pug", {
+    youAreUsingPug: true,
+    pageTitle: "Results Page",
+    breweryResults: results.data,
+    avgRating: reviewArr
   });
+  
+  res.send(html);
 });
 
 app.get('/Profile',requiresAuth(),(req,res) => {

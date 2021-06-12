@@ -24,14 +24,14 @@ function citySearch(event) {
   //     }
   // );
 
-  // getID = (data) => {
-  //     const arrLength = data.length;
-  //     const newData = []
-  //     for(i = 0; i < arrLength; i++) {
-  //         newData.push(data[i].id)
-  //     };
-  //     return newData;
-  // };
+  getID = (data) => {
+      const arrLength = data.length;
+      const newData = []
+      for(i = 0; i < arrLength; i++) {
+          newData.push(data[i].id)
+      };
+      return newData;
+  };
 
   //   fetch("https://api.openbrewerydb.org/breweries/15067").then(
   //       function(response){
