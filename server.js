@@ -51,10 +51,30 @@ app.get("/pug", (req, res) => {
   res.send("pug");
 });
 
-app.get("/", (req, res) => {
-  var html = pug.renderFile("./pages/index.pug", {
+app.get("/", async (req, res) => {
+  const data = await connection.promise().query(db.findHighestFive());
+  const top5 = JSON.parse(JSON.stringify(data[0]));
+  let breweryName = [];
+  let ratingArr = [];
+  let reviewCount = [];
+
+  for(i = 0; i<top5.length; i++){
+    const id = top5[i].apiID;
+    const url = `https://api.openbrewerydb.org/breweries/${id}`;
+
+    const results = await Axios.get(url);
+
+    breweryName.push(results.data.name);
+    ratingArr.push(top5[i].AvgReview);
+    reviewCount.push(top5[i].ReviewCount);
+  };
+
+  let html = pug.renderFile("./pages/index.pug", {
     youAreUsingPug: true,
     pageTitle: "Home Page",
+    breweryName: breweryName,
+    rating: ratingArr,
+    reviewCount: reviewCount
   });
 
   res.send(html);
@@ -65,6 +85,7 @@ app.get("/results/:query", async (req, res) => {
   const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_state=wisconsin&by_city=${req.params.query}`;
 
   let reviewArr = [];
+  let reviewCountArr = [];
   let idArr = [];
   let html;
 
@@ -76,27 +97,29 @@ app.get("/results/:query", async (req, res) => {
   
   for(i = 0; i < idArr.length; i++){
     const apiID = idArr[i];
-    // const apiID = 5051;
 
     const data = await connection.promise().query(db.findTotalsByScore(apiID), apiID)
     const parsedData = JSON.parse(JSON.stringify(data[0]));
 
     if(parsedData[0] === undefined){
       reviewArr.push("No Reviews!")
+      reviewCountArr.push("0")
     } else {
       const finalReview = parsedData[0].AvgReview.slice(0,3);
       reviewArr.push(`${finalReview}/5`)
+      reviewCountArr.push(parsedData[0].ReviewCount);
     }
   };
 
+  (idArr);
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
     pageTitle: "Results Page",
     breweryResults: results.data,
-    avgRating: reviewArr
+    avgRating: reviewArr,
+    reviewCount: reviewCountArr
   });
-  
   res.send(html);
 });
 
