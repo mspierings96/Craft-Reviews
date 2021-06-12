@@ -24,39 +24,36 @@ router.get("/rating", (req, res) => {
     })
 });
 
-// check for exisiting review by user for brewery
-router.get("/Reviewed", (req, res) => {
-    let apiID ='5051';
-    let userName = 'user1';
-    connection.query(db.searchExistingReview(apiID, userName), [apiID, userName], (err, results) => {
+
+//checks if existing rating for brewery by user if rating then update if not then create rating
+router.get("/rate", (req, res) => {
+    Reviews.findAll({
+        where: {
+            userName: req.body.userName,
+            apiID: req.body.apiID
+        }
+    }).then(checkRating => {
+        if(checkRating[0]===undefined){
+            Reviews.create({
+                apiID: req.body.apiID,
+                review: req.body.review,
+                userName: req.body.userName
+            }).then(submittedReview => {res.json(submittedReview)})
+            
+        } else {
+            Reviews.update(
+                {
+                    review: req.body.review
+                },
+                {
+                    where: {
+                        userName: req.body.userName,
+                        apiID: req.body.apiID
+                    }
+                }
+            ).then(updateRating => {res.json(updateRating)})
+        }
     })
 })
-
-// update existing review on brewery by user
-router.put("/updaterating", (req, res) => {
-    Reviews.update(
-        {
-            review: req.body.review
-        },
-        {
-            where: {
-                userName: req.body.userName,
-                apiID: req.body.apiID
-            }
-        }
-    ).then(updateRating => {res.json(updateRating)}
-    );
-});
-
-
-// create rating on brewery by user
-router.post("/newrate", (req, res) => {
-    Reviews.create({
-        apiID: req.body.apiID,
-        review: req.body.review,
-        userName: req.body.userName
-    }).then(submittedReview => {res.json(submittedReview)})
-});
-
 
 module.exports = router;
