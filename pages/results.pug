@@ -23,7 +23,7 @@ html(lang="en")
                                 ul
                                     li.brewery-type=' Brewery Type: ' + brewery.brewery_type
                                     li.brewery-street=' Street: ' + brewery.street
-                            a.card-link(href=brewery.website_url)=brewery.website_url
+                            a.card-link(href=brewery.website_url, target='_blank')=brewery.website_url
                             .dropdown
                                 button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
                                     | Rating
