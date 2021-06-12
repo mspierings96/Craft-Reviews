@@ -13,7 +13,7 @@ html(lang="en")
 
         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
         .row.mb-5 
-            each brewery in breweryResults
+            each brewery, index in breweryResults
                 .col-3 
                     .card(style='width: auto;').card-dark.bg-dark.text-white
                         .card-body
@@ -23,7 +23,6 @@ html(lang="en")
                                 ul
                                     li.brewery-type=' Brewery Type: ' + brewery.brewery_type
                                     li.brewery-street=' Street: ' + brewery.street
-<<<<<<< HEAD
                             a.card-link(href=brewery.website_url)=brewery.website_url
                             .dropdown
                                 button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
@@ -36,24 +35,7 @@ html(lang="en")
                                 //-     a.dropdown-item(href='#') 5
                             p.card.text
                                 ul
-                                    li.brewery-score-average='Rating Average: ' + '/5'
-=======
-                                a.card-link(href=brewery.website_url, target='_blank')=brewery.website_url
-                            //- .dropdown
-                            //-     button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
-                            //-         | Rating
-                            //-     .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                            //-         a.dropdown-item(href='#') 1
-                            //-         a.dropdown-item(href='#') 2
-                            //-         a.dropdown-item(href='#') 3
-                            //-         a.dropdown-item(href='#') 4
-                            //-         a.dropdown-item(href='#') 5
-                            p.card-text 
-                                ul 
-                                    li.brewery-score-average=' Rating Average: ' + brewery.id + ' /5 '
-                                
-                                
->>>>>>> develop
+                                    li.brewery-score-average='Rating Average: ' + avgRating[index]
             
         include includes/footer.pug 
 

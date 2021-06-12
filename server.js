@@ -76,6 +76,7 @@ app.get("/results/:query", async (req, res) => {
   
   for(i = 0; i < idArr.length; i++){
     const apiID = idArr[i];
+    // const apiID = 5051;
 
     const data = await connection.promise().query(db.findTotalsByScore(apiID), apiID)
     const parsedData = JSON.parse(JSON.stringify(data[0]));
@@ -83,11 +84,11 @@ app.get("/results/:query", async (req, res) => {
     if(parsedData[0] === undefined){
       reviewArr.push("No Reviews!")
     } else {
-      reviewArr.push(parsedData[0].AvgReview)
+      const finalReview = parsedData[0].AvgReview.slice(0,3);
+      reviewArr.push(`${finalReview}/5`)
     }
   };
 
-  console.log("ln 60 reviewArr", reviewArr);
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
