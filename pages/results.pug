@@ -14,7 +14,12 @@ html(lang="en")
         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
         .row.mb-4 
             if breweryResults.length == 0 
-                .col-6 No Results
+                .col-6 
+                .card(style='width: 18rem;').card-dark.bg-dark.text-white.text-center.center
+                    .card-body
+                        h5.card-title Oops! 
+                        p.card-text There was either a spelling error, or the location you searched does not have a brewery.
+                        a.btn.btn-primary(href='/') Return Home 
             each brewery, index in breweryResults
                 .col-lg-3
                     .card(style='width: auto;').card-dark.bg-dark.text-white
@@ -31,11 +36,11 @@ html(lang="en")
                                 button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
                                     | Rating
                                 .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                                    a.dropdown-item(href=`/api/brewery`) 1
-                                    a.dropdown-item(href='#') 2
-                                    a.dropdown-item(href='#') 3
-                                    a.dropdown-item(href='#') 4
-                                    a.dropdown-item(href='#') 5
+                                    a.dropdown-item(href=`/rate/rate`) 1
+                                    a.dropdown-item(href=`/rate/rate`) 2
+                                    a.dropdown-item(href=`/rate/rate`) 3
+                                    a.dropdown-item(href=`/rate/rate`) 4
+                                    a.dropdown-item(href=`/rate/rate`) 5
                             p.card.text
                                 ul
                                     li.brewery-score-average='Rating Average: ' + avgRating[index]
