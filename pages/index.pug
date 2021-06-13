@@ -23,32 +23,15 @@ html(lang="en")
                     th Brewery Rank 
                     th Name 
                     th City
-                    th State 
-                tr
-                    th 1
-                    td New Glarus Brewing Company
-                    td New Glarus
-                    td Wisconsin
-                tr
-                    th 2
-                    td Central Waters Brewing Company
-                    td Amherst
-                    td Wisconsin
-                tr
-                    th 3
-                    td Fox River Brewing Company
-                    td Oshkosh
-                    td Wisconsin
-                tr
-                    th 4
-                    td Wisconsin Brewing Company
-                    td Middleton
-                    td Wisconsin
-                tr
-                    th 5
-                    td Sheeps Brewing Company
-                    td Sheboygan
-                    td Wisconsin      
+                    th Rating
+            tbody
+                each brewery, index in breweries 
+                    tr
+                        td= index +1
+                        td= brewery.name 
+                        td= brewery.city
+                        td= brewery.AvgReview
+
     
         include includes/footer.pug  
     

@@ -1,14 +1,14 @@
 // Dependencies
 // ==============================
 const express = require("express");
-const connection = require('./config/connection-mysql')
+const connection = require("./config/connection-mysql");
 const db = require("./db");
 const routes = require("./routes");
 const Axios = require("axios");
 const pug = require("pug");
-require('dotenv').config();
+require("dotenv").config();
 
-const {auth, requiresAuth} =require('express-openid-connect');
+const { auth, requiresAuth } = require("express-openid-connect");
 
 //Sets up the Express App
 //===============================
@@ -19,28 +19,26 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(
   auth({
-    authRequired:false,
-    auth0Logout:true,
-      issuerBaseURL:process.env.AUTH0_ISSUER_BASE_URL,
-      baseURL:process.env.BASE_URL,
-      clientID:process.env.AUTH0_CLIENT_ID,
-      secret:process.env.CLIENT_SECRET,
-
+    authRequired: false,
+    auth0Logout: true,
+    issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+    baseURL: process.env.BASE_URL,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    secret: process.env.CLIENT_SECRET,
   })
 );
-app.get('/login',(req,res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+app.get("/login", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
-
-app.get('/sign-up',(req,res) => {
+app.get("/sign-up", (req, res) => {
   res.oidc.login({
-    authorizationParams:{
-      screen_hint:'sign-up',
+    authorizationParams: {
+      screen_hint: "sign-up",
     },
   });
 });
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   res.locals.isAuthenticated = req.oidc.isAuthenticated();
   next();
 });
@@ -54,27 +52,20 @@ app.get("/pug", (req, res) => {
 app.get("/", async (req, res) => {
   const data = await connection.promise().query(db.findHighestFive());
   const top5 = JSON.parse(JSON.stringify(data[0]));
-  let breweryName = [];
-  let ratingArr = [];
-  let reviewCount = [];
 
-  for(i = 0; i<top5.length; i++){
+  for (i = 0; i < top5.length; i++) {
     const id = top5[i].apiID;
     const url = `https://api.openbrewerydb.org/breweries/${id}`;
 
     const results = await Axios.get(url);
-
-    breweryName.push(results.data.name);
-    ratingArr.push(top5[i].AvgReview);
-    reviewCount.push(top5[i].ReviewCount);
-  };
+    top5[i].name = results.data.name;
+    top5[i].city = results.data.city;
+  }
 
   let html = pug.renderFile("./pages/index.pug", {
     youAreUsingPug: true,
     pageTitle: "Home Page",
-    breweryName: breweryName,
-    rating: ratingArr,
-    reviewCount: reviewCount
+    breweries: top5,
   });
 
   res.send(html);
@@ -91,48 +82,48 @@ app.get("/results/:query", async (req, res) => {
 
   const results = await Axios.get(url);
 
-  for(i = 0; i < results.data.length; i++){
+  for (i = 0; i < results.data.length; i++) {
     idArr.push(results.data[i].id);
   }
-  
-  for(i = 0; i < idArr.length; i++){
+
+  for (i = 0; i < idArr.length; i++) {
     const apiID = idArr[i];
 
-    const data = await connection.promise().query(db.findTotalsByScore(apiID), apiID)
+    const data = await connection
+      .promise()
+      .query(db.findTotalsByScore(apiID), apiID);
     const parsedData = JSON.parse(JSON.stringify(data[0]));
 
-    if(parsedData[0] === undefined){
-      reviewArr.push("No Reviews!")
-      reviewCountArr.push("0")
+    if (parsedData[0] === undefined) {
+      reviewArr.push("No Reviews!");
+      reviewCountArr.push("0");
     } else {
-      const finalReview = parsedData[0].AvgReview.slice(0,3);
-      reviewArr.push(`${finalReview}/5`)
+      const finalReview = parsedData[0].AvgReview.slice(0, 3);
+      reviewArr.push(`${finalReview}/5`);
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
-  };
+  }
 
-  (idArr);
+  idArr;
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
     pageTitle: "Results Page",
     breweryResults: results.data,
     avgRating: reviewArr,
-    reviewCount: reviewCountArr
+    reviewCount: reviewCountArr,
   });
   res.send(html);
 });
 
-app.get('/Profile',requiresAuth(),(req,res) => {
-  
-  var html = pug.renderFile("./pages/profile.pug",{
-    youAreUsingPug:true,
-    pageTitle:"Profile",
-    user:req.oidc.user,
-  })
-  res.send(html)
+app.get("/Profile", requiresAuth(), (req, res) => {
+  var html = pug.renderFile("./pages/profile.pug", {
+    youAreUsingPug: true,
+    pageTitle: "Profile",
+    user: req.oidc.user,
+  });
+  res.send(html);
 });
-
 
 app.listen(PORT, () => {
   console.log("Server listening on: " + PORT);
