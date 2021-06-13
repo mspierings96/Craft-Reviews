@@ -34,7 +34,7 @@ router.get("/rate", (req, res) => {
             Reviews.create({
                 apiID: req.body.apiID,
                 review: req.body.review,
-                userName: req.body.userName
+                userName: req.session.userName
             }).then(submittedReview => {res.json(submittedReview)})
             
         } else {
@@ -44,7 +44,7 @@ router.get("/rate", (req, res) => {
                 },
                 {
                     where: {
-                        userName: req.body.userName,
+                        userName: req.session.userName,
                         apiID: req.body.apiID
                     }
                 }
