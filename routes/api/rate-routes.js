@@ -6,9 +6,6 @@ const connection = require('../../config/connection-mysql')
 const db = require("../../db");
 const Reviews = require('../../models/reviews');
 
-
-
-
 // get top 5 highest rated breweries for home page
 router.get("/top5", (req, res) => {
     connection.query(db.findHighestFive(),(err, results) => {
