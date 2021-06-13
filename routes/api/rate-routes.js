@@ -26,7 +26,7 @@ router.get("/rating", (req, res) => {
 router.get("/rate", (req, res) => {
     Reviews.findAll({
         where: {
-            userName: req.body.userName,
+            userName: req.session.userName,
             apiID: req.body.apiID
         }
     }).then(checkRating => {
