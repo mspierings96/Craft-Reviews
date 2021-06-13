@@ -65,7 +65,7 @@ app.get("/", async (req, res) => {
     const results = await Axios.get(url);
 
     breweryName.push(results.data.name);
-    ratingArr.push(top5[i].AvgReview);
+    ratingArr.push(top5[i].AvgReview.slice(0,3));
     reviewCount.push(top5[i].ReviewCount);
   };
 
@@ -110,8 +110,6 @@ app.get("/results/:query", async (req, res) => {
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
   };
-
-  (idArr);
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
