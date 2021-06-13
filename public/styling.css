@@ -38,7 +38,9 @@ footer {
   background: var(--pirmary);
   position: relative;
   height: 90px;
+  text-decoration: none;
 }
+
 footer a {
   color: var(--secondary);
 }

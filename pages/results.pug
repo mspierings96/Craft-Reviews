@@ -14,7 +14,7 @@ html(lang="en")
         h3.mb-3.text-center.mb-5.mt-5  RANKING RESULTS 
         .row.mb-4 
             if breweryResults.length == 0 
-                .col-6 
+                .col-4
                 .card(style='width: 18rem;').card-dark.bg-dark.text-white.text-center.center
                     .card-body
                         h5.card-title Oops! 
@@ -36,11 +36,11 @@ html(lang="en")
                                 button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown')
                                     | Rating
                                 .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                                    a.dropdown-item(href=`/rate/rate`) 1
-                                    a.dropdown-item(href=`/rate/rate`) 2
-                                    a.dropdown-item(href=`/rate/rate`) 3
-                                    a.dropdown-item(href=`/rate/rate`) 4
-                                    a.dropdown-item(href=`/rate/rate`) 5
+                                    a.dropdown-item(href=`/api/rate/rate`) 1
+                                    a.dropdown-item(href=`/api/rate/rate`) 2
+                                    a.dropdown-item(href=`/api/rate/rate`) 3
+                                    a.dropdown-item(href=`/api/rate/rate`) 4
+                                    a.dropdown-item(href=`/api/rate/rate`) 5
                             p.card.text
                                 ul
                                     li.brewery-score-average='Rating Average: ' + avgRating[index]
