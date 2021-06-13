@@ -52,20 +52,23 @@ app.get("/pug", (req, res) => {
 app.get("/", async (req, res) => {
   const data = await connection.promise().query(db.findHighestFive());
   const top5 = JSON.parse(JSON.stringify(data[0]));
+  let ratingArr = [];
 
   for (i = 0; i < top5.length; i++) {
     const id = top5[i].apiID;
     const url = `https://api.openbrewerydb.org/breweries/${id}`;
-
+  
     const results = await Axios.get(url);
     top5[i].name = results.data.name;
     top5[i].city = results.data.city;
+    ratingArr.push(top5[i].AvgReview.slice(0,3));
   }
 
   let html = pug.renderFile("./pages/index.pug", {
     youAreUsingPug: true,
     pageTitle: "Home Page",
     breweries: top5,
+    rating: ratingArr
   });
 
   res.send(html);
@@ -103,8 +106,6 @@ app.get("/results/:query", async (req, res) => {
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
   }
-
-  idArr;
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
