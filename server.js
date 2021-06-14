@@ -59,10 +59,10 @@ app.get("/", async (req, res) => {
   for (i = 0; i < top5.length; i++) {
     const id = top5[i].apiID;
     const url = `https://api.openbrewerydb.org/breweries/${id}`;
-  
+
     const results = await Axios.get(url);
     brewery.push(results.data);
-    ratingArr.push(top5[i].AvgReview.slice(0,3));
+    ratingArr.push(top5[i].AvgReview.slice(0, 3));
     reviewCount.push(top5[i].ReviewCount);
   }
 
@@ -71,7 +71,7 @@ app.get("/", async (req, res) => {
     pageTitle: "Home Page",
     breweries: brewery,
     rating: ratingArr,
-    reviewCount: reviewCount
+    reviewCount: reviewCount,
   });
 
   res.send(html);
@@ -109,6 +109,7 @@ app.get("/results/:query", async (req, res) => {
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
   }
+  console.log(results.data);
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
