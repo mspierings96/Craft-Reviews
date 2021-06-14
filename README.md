@@ -12,7 +12,6 @@ Built With:
 * Express
 * Sequelize
 * Bcrypt
-* Node
 
 
 ## Table of Contents
