@@ -22,6 +22,12 @@ app.use(
   auth({
     authRequired: false,
     auth0Logout: true,
+    session: {
+      //@ts-ignore
+      cookie: {
+        domain: 'https://review-crafts.herokuapp.com/'
+      }
+    },
     issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
     baseURL: process.env.BASE_URL,
     clientID: process.env.AUTH0_CLIENT_ID,
