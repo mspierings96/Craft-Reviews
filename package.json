@@ -30,8 +30,6 @@
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
     "jsdom": "^16.6.0",
-    "moustache": "0.0.4",
-    "mustache": "^4.2.0",
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
