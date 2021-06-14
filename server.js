@@ -1,12 +1,13 @@
 // Dependencies
 // ==============================
+require("dotenv").config();
 const express = require("express");
 const connection = require("./config/connection-mysql");
+// const connection = require("./config/connection-sequelize");
 const db = require("./db");
 const routes = require("./routes");
 const Axios = require("axios");
 const pug = require("pug");
-require("dotenv").config();
 
 const { auth, requiresAuth } = require("express-openid-connect");
 
@@ -50,11 +51,7 @@ app.get("/pug", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  const data = await connection.promise().sequlize.literal(`SELECT r.apiID, AVG(r.review) AvgReview, count(r.review) ReviewCount
-  from reviews r
-  group by r.apiID
-  order by AvgReview desc, ReviewCount desc
-  limit 5;`);
+  const data = await connection.promise().query(db.findHighestFive());
   const top5 = JSON.parse(JSON.stringify(data[0]));
   let brewery = [];
   let ratingArr = [];
