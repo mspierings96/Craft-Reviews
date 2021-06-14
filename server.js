@@ -1,5 +1,6 @@
 // Dependencies
 // ==============================
+require("dotenv").config();
 const express = require("express");
 // const connection = require("./config/connection-mysql");
 const connection = require("./config/connection-sequelize");
@@ -7,7 +8,6 @@ const db = require("./db");
 const routes = require("./routes");
 const Axios = require("axios");
 const pug = require("pug");
-require("dotenv").config();
 
 const { auth, requiresAuth } = require("express-openid-connect");
 
