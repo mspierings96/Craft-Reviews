@@ -27,12 +27,6 @@ app.use(
     secret: process.env.CLIENT_SECRET,
   })
 );
-
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.oidc.isAuthenticated();
-  next();
-});
-
 app.get("/login", (req, res) => {
   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
@@ -43,6 +37,10 @@ app.get("/sign-up", (req, res) => {
       screen_hint: "sign-up",
     },
   });
+});
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.oidc.isAuthenticated();
+  next();
 });
 
 app.use(routes);
