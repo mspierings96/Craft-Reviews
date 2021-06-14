@@ -1,4 +1,4 @@
-const connection = require("../config/connection-sequelize");
+const connection = require("../config/connection-mysql");
 
 class DB {
   // Keeping a reference to the connection on the class in case we need it later
