@@ -24,13 +24,15 @@ html(lang="en")
                     th Name 
                     th City
                     th Rating
+                    th No. of Reviews
             tbody
-                each brewery, index in breweries 
+                each brewery, index in breweries
                     tr
                         td= index +1
-                        td= brewery.name 
+                        td= brewery.name
                         td= brewery.city
-                        td= brewery.AvgReview
+                        td= rating[index]
+                        td= reviewCount[index]
 
     
         include includes/footer.pug  
