@@ -19,8 +19,7 @@ router.get("/rating", (req, res) => {
 
 //checks if existing rating for brewery by user if rating then update if not then create rating
 router.post("/setRating", (req, res) => {
-  console.log(req?.session?.userName, req.body);
-  let userName = req?.session?.userName || "Mitchell";
+  let userName = req?.oidc?.user?.nickname || "Mitchell";
   if (req.body.apiID && req.body.review) {
     Reviews.findAll({
       where: {
@@ -32,7 +31,7 @@ router.post("/setRating", (req, res) => {
         Reviews.create({
           apiID: req.body.apiID,
           review: req.body.review,
-          userName: req.session.userName,
+          userName: userName,
         }).then((submittedReview) => {
           res.json(submittedReview);
         });
@@ -43,7 +42,7 @@ router.post("/setRating", (req, res) => {
           },
           {
             where: {
-              userName: req.session.userName,
+              userName: userName,
               apiID: req.body.apiID,
             },
           }

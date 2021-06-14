@@ -8,5 +8,6 @@ $("a.dropdown-item").on("click", function (event) {
     })
     .then(function (response) {
       console.log(response);
+      location.reload();
     });
 });

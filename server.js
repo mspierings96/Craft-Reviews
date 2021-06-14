@@ -118,6 +118,7 @@ app.get("/results/:query", async (req, res) => {
     breweryResults: results.data,
     avgRating: reviewArr,
     reviewCount: reviewCountArr,
+    user: req.oidc.user,
   });
   res.send(html);
 });
