@@ -19,7 +19,7 @@ router.get("/rating", (req, res) => {
 
 //checks if existing rating for brewery by user if rating then update if not then create rating
 router.post("/setRating", (req, res) => {
-  let userName = req?.oidc?.user?.nickname || "Mitchell";
+  let userName = req?.oidc?.user?.nickname || "NoUser";
   if (req.body.apiID && req.body.review) {
     Reviews.findAll({
       where: {
