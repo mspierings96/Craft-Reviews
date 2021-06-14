@@ -50,7 +50,11 @@ app.get("/pug", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  const data = await connection.promise().query(db.findHighestFive());
+  const data = await connection.promise().sequlize.literal(`SELECT r.apiID, AVG(r.review) AvgReview, count(r.review) ReviewCount
+  from reviews r
+  group by r.apiID
+  order by AvgReview desc, ReviewCount desc
+  limit 5;`);
   const top5 = JSON.parse(JSON.stringify(data[0]));
   let brewery = [];
   let ratingArr = [];
