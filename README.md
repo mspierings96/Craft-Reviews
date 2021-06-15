@@ -53,7 +53,11 @@ Built With:
 
 Users can create a profile for complete functionality of the website after logging in.
 
+<<<<<<< HEAD
 <img src = "./public/images/LoginScreen.PNG" width="750" height="200">
+=======
+<img src = "./public/images/LoginScreen.PNG" width="750" height="300">
+>>>>>>> 87913f8db5823316ee45fb7214156dd3b1423834
 
 &nbsp;
 
@@ -82,4 +86,8 @@ Github Repo -
 https://github.com/mspierings96/Craft-Reviews
 
 Live Site - 
+<<<<<<< HEAD
 https://review-crafts.herokuapp.com/
+=======
+
+>>>>>>> 87913f8db5823316ee45fb7214156dd3b1423834
