@@ -53,7 +53,7 @@ Built With:
 
 Users can create a profile for complete functionality of the website after logging in.
 
-<img src = "./public/images/LoginScreen.PNG" width="750" height="300">
+<img src = "./public/images/LoginScreen.PNG" width="750" height="200">
 
 &nbsp;
 
