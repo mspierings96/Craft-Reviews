@@ -7,8 +7,9 @@ USE craft_review_db;
 Create table users (
 id INTEGER NOT NULL auto_increment PRIMARY KEY,
 userName varchar (30),
-passwords varchar (50)
+passwords varchar (1000)
 );
+
 
 
 -- create table for holding review results

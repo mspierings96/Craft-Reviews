@@ -51,3 +51,52 @@ function citySearch(event) {
   //   )
   console.log(searchTerm);
 }
+
+async function signupFormHandler(event) {
+  event.preventDefault();
+  const userName = document.querySelector('#InputUser').value.trim();
+  const passwords = document.querySelector('#InputPassword').value.trim();
+  if(userName && passwords){
+    const response = await fetch('/api/users',{
+      method:'post',
+      body:JSON.stringify({
+        userName,
+        passwords
+      }),
+      headers:{'Content-Type':'application/json'}
+    });
+        // check the response status
+        if (response.ok) {
+          console.log('success');
+        } else {
+          alert(response.statusText);
+        }
+  }
+}
+async function loginFormHandler(event) {
+  event.preventDefault();
+
+  const userName = document.querySelector('#InputUser').value.trim();
+  const passwords = document.querySelector('#InputPassword').value.trim();
+
+  if (userName && passwords) {
+    const response = await fetch('/api/users/login', {
+      method: 'post',
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert(response.statusText);
+    }
+  }
+}
+
+document.querySelector('#signin').addEventListener('submit', loginFormHandler);
+
+document.querySelector('#signup').addEventListener('submit', signupFormHandler);
