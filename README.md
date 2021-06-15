@@ -12,6 +12,7 @@ Built With:
 * Express
 * Sequelize
 * Bcrypt
+* Auth0
 
 
 ## Table of Contents
@@ -34,6 +35,7 @@ Built With:
 * node-fetch
 * path
 * jquery
+* auth0
 
 2. Required dotenv file variables:
 * DB_User 
