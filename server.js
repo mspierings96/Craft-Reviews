@@ -44,6 +44,11 @@ app.set('views','./pages');
 app.use(routes);
 
 
+app.get("/pug", (req, res) => {
+  res.send("pug");
+});
+
+
 app.get("/", async (req, res) => {
   const data = await connection.promise().query(db.findHighestFive());
   const top5 = JSON.parse(JSON.stringify(data[0]));
@@ -104,7 +109,7 @@ app.get("/results/:query", async (req, res) => {
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
   }
-  console.log(results.data);
+
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
@@ -132,6 +137,10 @@ app.get("/results/:query", async (req, res) => {
 // });
 
 
-app.listen(PORT, () => {
-  console.log("Server listening on: " + PORT);
+// app.listen(PORT, () => {
+//   console.log("Server listening on: " + PORT);
+// });
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
+
