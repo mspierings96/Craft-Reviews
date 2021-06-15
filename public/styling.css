@@ -55,3 +55,7 @@ footer p {
 .card {
   margin-bottom: 10px;
 }
+
+ul {
+  list-style-type: none;
+}
