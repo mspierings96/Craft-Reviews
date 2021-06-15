@@ -8,7 +8,10 @@ html(lang="en")
     link(rel='stylesheet', href='/styling.css')
   body
     .container
-        include includes/header.pug 
+        include includes/header.pug
+         nav
+         button#logout.btn-no-style logout
+        a(href='/login') login
             
         h2.mb-3.text-center.mb-5.mt-5 Search a City
         form.d-flex.mb-5
@@ -25,19 +28,20 @@ html(lang="en")
                     th City
                     th Rating
                     th No. of Reviews
-            tbody
-                each brewery, index in breweries
-                    tr
-                        td= index +1
-                        td= brewery.name
-                        td= brewery.city
-                        td= rating[index]
-                        td= reviewCount[index]
+            //- tbody
+            //-     each brewery, index in breweries
+            //-         tr
+            //-             td= index +1
+            //-             td= brewery.name
+            //-             td= brewery.city
+            //-             td= rating[index]
+            //-             td= reviewCount[index]
 
     
         include includes/footer.pug  
     
     script(src='/script.js')
+    script(src='/logout.js')
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')

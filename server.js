@@ -2,13 +2,32 @@
 // ==============================
 const express = require("express");
 const connection = require("./config/connection-mysql");
+const sequelize =require('./config/connection-sequelize');
 const db = require("./db");
 const routes = require("./routes");
 const Axios = require("axios");
+const path = require('path')
 const pug = require("pug");
+const session = require('express-session');
+
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+
+
+
+
 require("dotenv").config();
 
-const { auth, requiresAuth } = require("express-openid-connect");
 
 //Sets up the Express App
 //===============================
@@ -16,38 +35,20 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+app.use(session(sess));
+// app.use(session(sess));
 app.use(express.static("public"));
-app.use(
-  auth({
-    authRequired: false,
-    auth0Logout: true,
-    issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
-    baseURL: process.env.BASE_URL,
-    clientID: process.env.AUTH0_CLIENT_ID,
-    secret: process.env.CLIENT_SECRET,
-  })
-);
-app.get("/login", (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-});
-
-app.get("/sign-up", (req, res) => {
-  res.oidc.login({
-    authorizationParams: {
-      screen_hint: "sign-up",
-    },
-  });
-});
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.oidc.isAuthenticated();
-  next();
-});
+app.set('view engine','pug');
+app.set('views','./pages');
 
 app.use(routes);
+
 
 app.get("/pug", (req, res) => {
   res.send("pug");
 });
+
 
 app.get("/", async (req, res) => {
   const data = await connection.promise().query(db.findHighestFive());
@@ -109,7 +110,7 @@ app.get("/results/:query", async (req, res) => {
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
   }
-  console.log(results.data);
+
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
@@ -121,15 +122,26 @@ app.get("/results/:query", async (req, res) => {
   res.send(html);
 });
 
-app.get("/Profile", requiresAuth(), (req, res) => {
-  var html = pug.renderFile("./pages/profile.pug", {
-    youAreUsingPug: true,
-    pageTitle: "Profile",
-    user: req.oidc.user,
-  });
-  res.send(html);
+// app.get("/login", (req, res) => {
+//   var html = pug.renderFile("./pages/profile.pug", {
+//     youAreUsingPug: true,
+//     pageTitle: "Login",
+//   });
+//   res.send(html);
+// });
+// app.get("/register", (req, res) => {
+//   var html = pug.renderFile("./pages/includes/register.pug", {
+//     youAreUsingPug: true,
+//     pageTitle: "Register",
+//   });
+//   res.send(html);
+// });
+
+
+// app.listen(PORT, () => {
+//   console.log("Server listening on: " + PORT);
+// });
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
 
-app.listen(PORT, () => {
-  console.log("Server listening on: " + PORT);
-});

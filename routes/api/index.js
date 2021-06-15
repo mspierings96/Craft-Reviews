@@ -4,6 +4,6 @@ const rateRoutes = require("./rate-routes");
 const userRoutes = require("./user-routes");
 
 router.use("/rate", rateRoutes);
-router.use("/user", userRoutes);
+router.use("/users", userRoutes);
 
 module.exports = router;

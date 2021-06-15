@@ -3,6 +3,7 @@ const router = express.Router();
 const Users = require("../../models/users");
 const connection = require("../../config/connection-mysql");
 
+
 const db = require("../../db");
 const Reviews = require("../../models/reviews");
 
@@ -32,7 +33,7 @@ router.post("/setRating", (req, res) => {
         Reviews.create({
           apiID: req.body.apiID,
           review: req.body.review,
-          userName: req.session.userName,
+          userName: req.body.userName,
         }).then((submittedReview) => {
           res.json(submittedReview);
         });
