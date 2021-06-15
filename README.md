@@ -1,4 +1,4 @@
-# Craft-Reviews
+# Review-Crafts
 
 ## Description:
 A user interactive website to rate and view breweries in the state of Wisconsin. 

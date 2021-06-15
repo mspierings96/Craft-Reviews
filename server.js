@@ -110,7 +110,6 @@ app.get("/results/:query", async (req, res) => {
       reviewCountArr.push(parsedData[0].ReviewCount);
     }
   }
-  console.log(results.data);
 
   html = pug.renderFile("./pages/results.pug", {
     youAreUsingPug: true,
