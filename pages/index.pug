@@ -8,7 +8,7 @@ html(lang="en")
     link(rel='stylesheet', href='/styling.css')
   body
     .container
-        include includes/header.pug 
+        include includes/header.pug
             
         h2.mb-3.text-center.mb-5.mt-5 Search a City
         form.d-flex.mb-5
@@ -25,14 +25,14 @@ html(lang="en")
                     th City
                     th Rating
                     th No. of Reviews
-            tbody
-                each brewery, index in breweries
-                    tr
-                        td= index +1
-                        td= brewery.name
-                        td= brewery.city
-                        td= rating[index]
-                        td= reviewCount[index]
+            //- tbody
+            //-     each brewery, index in breweries
+            //-         tr
+            //-             td= index +1
+            //-             td= brewery.name
+            //-             td= brewery.city
+            //-             td= rating[index]
+            //-             td= reviewCount[index]
 
     
         include includes/footer.pug  
