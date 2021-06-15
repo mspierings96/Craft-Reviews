@@ -7,7 +7,6 @@ $("a.dropdown-item").on("click", function (event) {
       review: $(this).text(),
     })
     .then(function (response) {
-      console.log(response);
       location.reload();
     });
 });

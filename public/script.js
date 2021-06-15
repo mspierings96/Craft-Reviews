@@ -25,29 +25,13 @@ function citySearch(event) {
   // );
 
   getID = (data) => {
-      const arrLength = data.length;
-      const newData = []
-      for(i = 0; i < arrLength; i++) {
-          newData.push(data[i].id)
-      };
-      return newData;
+    const arrLength = data.length;
+    const newData = [];
+    for (i = 0; i < arrLength; i++) {
+      newData.push(data[i].id);
+    }
+    return newData;
   };
 
-  //   fetch("https://api.openbrewerydb.org/breweries/15067").then(
-  //       function(response){
-  //           if(response.status !== 200){
-  //               console.log(`Looks like there was a problem. Status Code: ${response.status}`)
-  //               return;
-  //           }
-
-  //           response.json().then(function(data){
-  //               console.log(`
-  //               Name: ${data.name}
-  //               City: ${data.city}
-  //               Website: ${data.website_url}
-  //               `)
-  //           })
-  //       }
-  //   )
   console.log(searchTerm);
 }
