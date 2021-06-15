@@ -48,8 +48,8 @@ async function loginFormHandler(event) {
     const response = await fetch('/api/users/login', {
       method: 'post',
       body: JSON.stringify({
-        email,
-        password
+        userName,
+        passwords
       }),
       headers: { 'Content-Type': 'application/json' }
     });
@@ -61,20 +61,7 @@ async function loginFormHandler(event) {
     }
   }
 }
-async function logout() {
-  const response = await fetch('/api/users/logout', {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' }
-  });
 
-  if (response.ok) {
-    document.location.replace('/');
-  } else {
-    alert(response.statusText);
-  }
-}
-
-document.querySelector('#logout').addEventListener('click', logout);
 
 
 document.querySelector('#signin').addEventListener('submit', loginFormHandler);
